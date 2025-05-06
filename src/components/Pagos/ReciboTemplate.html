@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Recibo de Pago</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fff;
+            color: #222;
+            margin: 0;
+            padding: 0;
+        }
+        .main-container {
+            width: 1100px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .recibo-container {
+            width: 700px;
+            border: 2px solid #222;
+            padding: 15px 15px 8px 15px;
+            background: #fff;
+            box-sizing: border-box;
+        }
+        .pagos-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            gap: 10px;
+            width: 360px;
+        }
+        .pagos-columna {
+            flex: 1;
+            border: 2px solid #222;
+            padding: 10px;
+            background: #fff;
+            font-size: 12px;
+        }
+        .pagos-lista {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .pagos-lista li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            padding: 2px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+        .pagos-lista li:last-child {
+            border-bottom: none;
+        }
+        .alumno-info {
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #222;
+        }
+        .alumno-info h3 {
+            margin: 0 0 5px 0;
+            font-size: 13px;
+            color: #388e3c;
+        }
+        .header {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .logo {
+            width: 130px;
+            height: 70px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .datos-academia {
+            font-size: 11px;
+            line-height: 1.2;
+            margin-left: 0;
+            max-width: 220px;
+        }
+        .datos-academia div {
+            white-space: nowrap;
+        }
+        .datos-academia .titulo {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .datos-academia .resolucion {
+            font-size: 10px;
+        }
+        .recibo-header {
+            margin-left: auto;
+            text-align: right;
+            font-size: 11px;
+            min-width: 180px;
+        }
+        .recibo-header .titulo {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        .recibo-header .contacto {
+            margin-top: 6px;
+            padding-top: 4px;
+            border-top: 1px dotted #ccc;
+        }
+        .recibo-header .contacto div {
+            margin-bottom: 1px;
+        }
+        .recibo-titulo {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 2px;
+        }
+        .recibo-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 12px;
+        }
+        .recibo-info .izq, .recibo-info .der {
+            width: 45%;
+        }
+        .recibo-info label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .recibo-info input, .recibo-info span {
+            font-size: 13px;
+        }
+        .tabla-producto {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0;
+            font-size: 12px;
+        }
+        .tabla-producto th, .tabla-producto td {
+            border: 1px solid #222;
+            padding: 3px 5px;
+            text-align: left;
+        }
+        .tabla-producto th {
+            background: #e6e6e6;
+        }
+        .nota {
+            background: #f44336;
+            color: #fff;
+            padding: 5px 8px;
+            font-size: 12px;
+            margin: 8px 0;
+        }
+        .firmas {
+            margin-top: 25px;
+            font-size: 12px;
+        }
+        .firma-tesoreria {
+            text-align: center;
+            width: 200px;
+        }
+        .firma-tesoreria .linea {
+            border-top: 1px solid #222;
+            margin: 25px 0 4px 0;
+        }
+        .pagos-columna .firma-encargado {
+            margin-top: 25px;
+            text-align: center;
+            padding-top: 5px;
+            border-top: 1px solid #222;
+            font-size: 12px;
+        }
+        .footer {
+            font-size: 11px;
+            color: #388e3c;
+            margin-top: 8px;
+        }
+        .sello {
+            text-align: center;
+            font-style: italic;
+            margin-top: 8px;
+            font-size: 12px;
+        }
+        .reciclamos {
+            font-size: 11px;
+            color: #222;
+            text-align: right;
+            margin-top: 4px;
+        }
+        .total-box {
+            text-align: right;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        .meses-cancelados {
+            border: 1px solid #222;
+            padding: 6px;
+            font-size: 12px;
+            margin-top: 10px;
+            width: 260px;
+        }
+        .meses-cancelados .titulo {
+            font-weight: bold;
+            color: #388e3c;
+            margin-bottom: 4px;
+        }
+        .meses-cancelados ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .meses-cancelados li {
+            margin-bottom: 2px;
+        }
+        .hora-impresion {
+            font-size: 11px;
+            color: #666;
+            margin: 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="recibo-container">
+            <div class="header">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/XNfy6qb2/page-1.jpg" alt="Logo">
+                </div>
+                <div class="datos-academia">
+                    <div class="titulo">ALDEA LA ESMERALDA, JEREZ</div>
+                    <div class="resolucion">AUTORIZADA RESOL. 154-2006,</div>
+                    <div class="resolucion">00840-DIGACE/2009 121-2013</div>
+                    <div>CÓDIGOS DE ACADEMIAS</div>
+                    <div>00929-2010 - 00930-2010</div>
+                </div>
+                <div class="recibo-header">
+                    <div class="titulo">RECIBO</div>
+                    <div>Orden: <!-- ORDEN --></div>
+                    <div>Inscripción: <!-- FECHA INSCRIPCION --></div>
+                    <div>Fecha: <!-- FECHA ACTUAL --></div>
+                    <div class="contacto">
+                        <div>TEL: 57665339 - 44400394</div>
+                        <div>Atención: Lunes a Viernes</div>
+                        <div>8:00 Hrs - 18:00 Hrs</div>
+                    </div>
+                </div>
+            </div>
+            <hr style="margin:8px 0; border-top: 1px solid #222;">
+            <div class="recibo-info">
+                <div class="izq">
+                    <div><label>Código del Alumno:</label><!-- CODIGO ALUMNO --></div>
+                    <div><label>Nombre:</label><!-- NOMBRE ALUMNO --></div>
+                    <div><label>Dirección:</label><!-- DIRECCION --></div>
+                    <div><label>Horario:</label><!-- HORARIO --></div>
+                </div>
+                <div class="der">
+                    <div><label>Encargado:</label><!-- NOMBRE ENCARGADO --></div>
+                    <div><label>Teléfono:</label><!-- TELEFONO --></div>
+                    <div><label>Curso:</label><!-- CURSO --></div>
+                </div>
+            </div>
+            <table class="tabla-producto">
+                <thead>
+                    <tr>
+                        <th>Cantidad</th>
+                        <th>Descripción del Producto</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><!-- CANTIDAD --></td>
+                        <td><!-- DESCRIPCION DEL PRODUCTO --></td>
+                        <td><!-- PRECIO --></td>
+                        <td><!-- TOTAL --></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="nota">
+                <!-- NOTA O MENSAJE IMPORTANTE -->
+            </div>
+            <div class="total-box">
+                Total: Q <!-- TOTAL -->
+            </div>
+            <div class="hora-impresion">
+                Hora de impresión: <!-- FECHA Y HORA IMPRESION -->
+            </div>
+            <div class="firmas">
+                <div class="firma-tesoreria">
+                    <div class="linea"></div>
+                    Firma de Tesorería
+                </div>
+            </div>
+            <div class="sello">
+                sello
+            </div>
+            <div class="footer">
+                <b>Nota:</b> Todas las colegiaturas se cobran por adelantado. Lea condiciones y términos de la academia, desde el numeral 1 hasta 1.10
+            </div>
+            <div class="reciclamos">
+                RECICLAMOS PAPEL
+            </div>
+        </div>
+
+        <div class="pagos-container">
+            <div class="pagos-columna">
+                <ul class="pagos-lista">
+                    <li><span>Pago 1:</span> <span><!-- PAGO1 --></span></li>
+                    <li><span>Pago 2:</span> <span><!-- PAGO2 --></span></li>
+                    <li><span>Pago 3:</span> <span><!-- PAGO3 --></span></li>
+                    <li><span>Pago 4:</span> <span><!-- PAGO4 --></span></li>
+                    <li><span>Pago 5:</span> <span><!-- PAGO5 --></span></li>
+                    <li><span>Pago 6:</span> <span><!-- PAGO6 --></span></li>
+                    <li><span>Pago 7:</span> <span><!-- PAGO7 --></span></li>
+                    <li><span>Pago 8:</span> <span><!-- PAGO8 --></span></li>
+                    <li><span>Pago 9:</span> <span><!-- PAGO9 --></span></li>
+                    <li><span>Pago 10:</span> <span><!-- PAGO10 --></span></li>
+                    <li><span>Pago 11:</span> <span><!-- PAGO11 --></span></li>
+                </ul>
+            </div>
+            <div class="pagos-columna">
+                <div class="alumno-info">
+                    <h3><!-- NOMBRE ALUMNO --></h3>
+                    <div>Tiene cancelado los siguientes meses:</div>
+                </div>
+                <ul class="pagos-lista">
+                    <li><span>Pago 1:</span> <span><!-- PAGO1_FECHA --></span></li>
+                    <li><span>Pago 2:</span> <span><!-- PAGO2_FECHA --></span></li>
+                    <li><span>Pago 3:</span> <span><!-- PAGO3_FECHA --></span></li>
+                    <li><span>Pago 4:</span> <span><!-- PAGO4_FECHA --></span></li>
+                    <li><span>Pago 5:</span> <span><!-- PAGO5_FECHA --></span></li>
+                    <li><span>Pago 6:</span> <span><!-- PAGO6_FECHA --></span></li>
+                    <li><span>Pago 7:</span> <span><!-- PAGO7_FECHA --></span></li>
+                    <li><span>Pago 8:</span> <span><!-- PAGO8_FECHA --></span></li>
+                    <li><span>Pago 9:</span> <span><!-- PAGO9_FECHA --></span></li>
+                    <li><span>Pago 10:</span> <span><!-- PAGO10_FECHA --></span></li>
+                    <li><span>Pago 11:</span> <span><!-- PAGO11_FECHA --></span></li>
+                </ul>
+                <div class="firma-encargado">
+                    Firma del encargado
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
