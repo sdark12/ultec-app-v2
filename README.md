@@ -1,54 +1,149 @@
-# React + TypeScript + Vite
+# ULTEC App v2 - Sistema de Gestión Académica
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema de gestión integral para academias educativas, desarrollado con React, TypeScript y TailwindCSS.
 
-Currently, two official plugins are available:
+## 🚀 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Gestión de Alumnos**
+  - Registro y seguimiento de estudiantes
+  - Historial académico
+  - Gestión de asistencias
 
-## Expanding the ESLint configuration
+- **Gestión de Cursos**
+  - Creación y administración de cursos
+  - Asignación de profesores
+  - Control de horarios
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Sistema de Pagos**
+  - Registro de pagos
+  - Generación de recibos
+  - Reportes financieros
+  - Seguimiento de pagos pendientes
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Gestión de Encargados**
+  - Registro de encargados
+  - Asociación con alumnos
+  - Comunicación y notificaciones
+
+- **Evaluaciones y Calificaciones**
+  - Registro de evaluaciones
+  - Cálculo de promedios
+  - Reportes de rendimiento
+
+- **Dashboard Administrativo**
+  - Estadísticas generales
+  - Reportes financieros
+  - Indicadores de rendimiento
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Frontend**
+  - React 18
+  - TypeScript
+  - TailwindCSS 4
+  - Vite
+  - React Router DOM
+  - React Icons
+
+- **Backend**
+  - Supabase (Backend as a Service)
+  - PostgreSQL (Base de datos)
+
+- **Herramientas de Desarrollo**
+  - ESLint
+  - Prettier
+  - Git
+
+## 📋 Requisitos Previos
+
+- Node.js (versión 18 o superior)
+- npm o yarn
+- Cuenta en Supabase
+
+## 🔧 Instalación
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/sdark12/ultec-app-v2.git
+   cd ultec-app-v2
+   ```
+
+2. Instala las dependencias:
+   ```bash
+   npm install
+   # o
+   yarn install
+   ```
+
+3. Configura las variables de entorno:
+   Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+   ```
+   VITE_SUPABASE_URL=tu_url_de_supabase
+   VITE_SUPABASE_ANON_KEY=tu_clave_anonima_de_supabase
+   ```
+
+4. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   # o
+   yarn dev
+   ```
+
+## 📦 Estructura del Proyecto
+
+```
+ultec-app-v2/
+├── src/
+│   ├── components/     # Componentes React
+│   ├── pages/         # Páginas de la aplicación
+│   ├── routes/        # Configuración de rutas
+│   ├── context/       # Contextos de React
+│   ├── types/         # Definiciones de TypeScript
+│   └── lib/           # Utilidades y configuraciones
+├── public/            # Archivos estáticos
+└── ...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔐 Roles y Permisos
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+El sistema maneja diferentes roles de usuario:
+- **Administrador**: Acceso total al sistema
+- **Profesor**: Gestión de cursos y calificaciones
+- **Encargado**: Visualización de información de sus alumnos
+- **Alumno**: Acceso a su información personal y académica
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 📱 Características Responsivas
+
+- Diseño adaptable a diferentes dispositivos
+- Interfaz optimizada para móviles y tablets
+- Componentes responsivos con TailwindCSS
+
+## 🤝 Contribución
+
+1. Haz un Fork del proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## ✨ Características Futuras
+
+- [ ] Sistema de notificaciones por email
+- [ ] Aplicación móvil
+- [ ] Integración con sistemas de pago en línea
+- [ ] Módulo de videoconferencias
+- [ ] Sistema de tareas y deberes
+
+## 📞 Soporte
+
+Para soporte, por favor contacta a:
+- Email: darksmetal@gmail.com
+- GitHub: [@sdark12](https://github.com/sdark12)
+
+---
+
+Desarrollado con ❤️ por [sdark12](https://github.com/sdark12)
